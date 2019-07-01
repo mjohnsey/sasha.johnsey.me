@@ -4,6 +4,7 @@ title = "Sasha Angel Johnsey"
 theme = "pulp"
 canonifyurls = true
 hasCJKLanguage = true
+publishDir = "docs"
 # googleAnalytics = "{your tracking code}"
 
 [taxonomies]

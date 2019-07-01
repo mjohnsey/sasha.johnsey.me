@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  {{- partial "head.html" . -}}
+  <body>
+    <div id="profileContainer">
+      <div id="profile">
+        <header>
+          <!-- avator -->
+          <div class="avatar">
+            <img class="avatarMask" src="/img/{{ .Site.Params.avatar }}" alt="avatar">
+            <img src="/img/avatar-border.svg" alt="avatar-border">
+          </div>
+          <!-- author -->
+          <h1 class="author">{{ .Site.Params.Author }}</h1>
+        </header>
+        <p id="birthdate"></p>
+        <p id="realtiveAge"></p>
+        <p>
+            Food: <a href="https://smile.amazon.com/Purina-Puppy-Chow-Complete-Chicken/dp/B07D1L7X33">Purina Puppy Chow Complete With Real Chicken Dry</a>
+        </p>
+
+        <nav>
+          <ul>
+            {{ range .Site.Menus.main }}
+            <li><a href="{{ .URL }}" aria-label="{{ .Identifier }}">{{ .Pre }}<br>{{ .Name }}</a></li>
+            {{ end }}
+          </ul>
+        </nav>
+      </div>
+    </div>
+    {{- partial "footer.html" . -}}
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script type="module" src="/js/facts.js"></script>
+  <script type="module" src="/js/index.js"></script>
+  </body>
+</html>

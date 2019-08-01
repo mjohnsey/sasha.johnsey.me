@@ -12,10 +12,10 @@ const setBirthdate = birthdate => {
 };
 
 const relativeAgeText = birthdate => {
-  const today = moment();
+  const today = moment().startOf('day');
   const weeks = today.diff(birthdate, "week");
 
-  let age = `${birthdate.fromNow(true)} old`;
+  let age = `${birthdate.preciseDiff(today)} old`;
   if (weeks < 24) {
     age = `${age} (${weeks} weeks)`;
   }

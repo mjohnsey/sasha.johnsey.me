@@ -59,7 +59,7 @@ const buildWeighChartConfig = (weightArray) => {
       },
       title: {
         display: true,
-        text: "Sasha\"s Weight",
+        text: "Sasha's Weight",
       },
     },
     type: "line",

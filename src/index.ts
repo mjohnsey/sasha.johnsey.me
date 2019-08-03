@@ -1,14 +1,14 @@
 import Chart from "chart.js";
 import moment from "moment";
 import "moment-precise-range-plugin";
-import facts from "./facts";
+import {Birthday, WeightMeasures} from "./facts";
 
 const relativeAgeId = "#realtiveAge";
 const birthdateId = "#birthdate";
 
 const setRelativeAge = (age) => $(relativeAgeId).text(age);
 
-const setBirthdate = (birthdate) => $(birthdateId).text(`Born on ${birthdate.format("MMMM Do YYYY")}`);
+const setBirthdate = (birthdate: moment.Moment) => $(birthdateId).text(`Born on ${birthdate.format("MMMM Do YYYY")}`);
 
 const relativeAgeText = (birthdate) => {
   const today = moment().startOf("day");
@@ -24,7 +24,7 @@ const relativeAgeText = (birthdate) => {
 const buildWeighChartConfig = (weightArray) => {
   const dataValues = [];
   weightArray.forEach((weight) => {
-    dataValues.push({ x: weight.Date, y: weight.Weight });
+    dataValues.push({ x: weight.Date.format("YYYY-MM-DD"), y: weight.Weight });
   });
   const config = {
     data: {
@@ -74,7 +74,6 @@ const buildWeightChart = (weightArray) => {
   const weightChart = new Chart(ctx, config); // eslint-disable-line no-unused-vars
 };
 
-const birthday = moment(facts.birthdate);
-setBirthdate(birthday);
-setRelativeAge(relativeAgeText(birthday));
-buildWeightChart(facts.weight);
+setBirthdate(Birthday);
+setRelativeAge(relativeAgeText(Birthday));
+buildWeightChart(WeightMeasures);

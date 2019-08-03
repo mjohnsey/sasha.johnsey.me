@@ -1,19 +1,18 @@
-import moment from 'moment';
-import 'moment-precise-range-plugin';
-import Chart from 'chart.js';
-import facts from './facts';
+import Chart from "chart.js";
+import moment from "moment";
+import "moment-precise-range-plugin";
+import facts from "./facts";
 
+const relativeAgeId = "#realtiveAge";
+const birthdateId = "#birthdate";
 
-const relativeAgeId = '#realtiveAge';
-const birthdateId = '#birthdate';
+const setRelativeAge = (age) => $(relativeAgeId).text(age);
 
-const setRelativeAge = age => $(relativeAgeId).text(age);
-
-const setBirthdate = birthdate => $(birthdateId).text(`Born on ${birthdate.format('MMMM Do YYYY')}`);
+const setBirthdate = (birthdate) => $(birthdateId).text(`Born on ${birthdate.format("MMMM Do YYYY")}`);
 
 const relativeAgeText = (birthdate) => {
-  const today = moment().startOf('day');
-  const weeks = today.diff(birthdate, 'week');
+  const today = moment().startOf("day");
+  const weeks = today.diff(birthdate, "week");
 
   let age = `${birthdate.preciseDiff(today)} old`;
   if (weeks < 24) {
@@ -28,12 +27,11 @@ const buildWeighChartConfig = (weightArray) => {
     dataValues.push({ x: weight.Date, y: weight.Weight });
   });
   const config = {
-    type: 'line',
     data: {
       datasets: [{
-        label: 'Weight (lbs)',
-        fill: false,
         data: dataValues,
+        fill: false,
+        label: "Weight (lbs)",
       }],
     },
     options: {
@@ -41,41 +39,42 @@ const buildWeighChartConfig = (weightArray) => {
         display: false,
       },
       responsive: true,
-      title: {
-        display: true,
-        text: 'Sasha\'s Weight',
-      },
       scales: {
         xAxes: [{
-          type: 'time',
           display: true,
           scaleLabel: {
             display: true,
-            labelString: 'Date',
+            labelString: "Date",
           },
           ticks: {},
+          type: "time",
         }],
         yAxes: [{
           display: true,
           scaleLabel: {
             display: true,
-            labelString: 'Weight (lbs)',
+            labelString: "Weight (lbs)",
           },
         }],
       },
+      title: {
+        display: true,
+        text: "Sasha\"s Weight",
+      },
     },
+    type: "line",
   };
   return config;
 };
 
 const buildWeightChart = (weightArray) => {
-  const ctx = $('#weightChart');
+  const ctx = $("#weightChart");
   const config = buildWeighChartConfig(weightArray);
   // https://www.chartjs.org/docs/latest
   const weightChart = new Chart(ctx, config); // eslint-disable-line no-unused-vars
 };
 
-const birthdate = moment(facts.birthdate);
-setBirthdate(birthdate);
-setRelativeAge(relativeAgeText(birthdate));
+const birthday = moment(facts.birthdate);
+setBirthdate(birthday);
+setRelativeAge(relativeAgeText(birthday));
 buildWeightChart(facts.weight);

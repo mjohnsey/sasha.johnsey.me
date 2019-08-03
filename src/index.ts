@@ -25,7 +25,7 @@ const relativeAgeText = (birthdate) => {
 const buildWeighChartConfig = (weightArray) => {
   const dataValues = [];
   weightArray.forEach((weight) => {
-    dataValues.push({ x: weight.day, y: weight.value });
+    dataValues.push({ x: weight.Date, y: weight.Weight });
   });
   const config = {
     type: 'line',
@@ -71,6 +71,7 @@ const buildWeighChartConfig = (weightArray) => {
 const buildWeightChart = (weightArray) => {
   const ctx = $('#weightChart');
   const config = buildWeighChartConfig(weightArray);
+  // https://www.chartjs.org/docs/latest
   const weightChart = new Chart(ctx, config); // eslint-disable-line no-unused-vars
 };
 

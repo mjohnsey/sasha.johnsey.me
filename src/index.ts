@@ -2,6 +2,7 @@ import Chart from "chart.js";
 import moment from "moment";
 import "moment-precise-range-plugin";
 import {Birthday, WeightMeasures} from "./facts";
+import WeightMeasurement from "./model/weight";
 
 const relativeAgeId = "#realtiveAge";
 const birthdateId = "#birthdate";
@@ -10,7 +11,7 @@ const setRelativeAge = (age) => $(relativeAgeId).text(age);
 
 const setBirthdate = (birthdate: moment.Moment) => $(birthdateId).text(`Born on ${birthdate.format("MMMM Do YYYY")}`);
 
-const relativeAgeText = (birthdate) => {
+const relativeAgeText = (birthdate): string => {
   const today = moment().startOf("day");
   const weeks = today.diff(birthdate, "week");
 
@@ -21,7 +22,7 @@ const relativeAgeText = (birthdate) => {
   return age;
 };
 
-const buildWeighChartConfig = (weightArray) => {
+const buildWeighChartConfig = (weightArray: WeightMeasurement[]): any => {
   const dataValues = [];
   weightArray.forEach((weight) => {
     dataValues.push({ x: weight.Date.format("YYYY-MM-DD"), y: weight.Weight });
@@ -67,8 +68,8 @@ const buildWeighChartConfig = (weightArray) => {
   return config;
 };
 
-const buildWeightChart = (weightArray) => {
-  const ctx = $("#weightChart");
+const buildWeightChart = (weightArray: WeightMeasurement[]): void => {
+  const ctx = document.getElementById("weightChart") as HTMLCanvasElement;
   const config = buildWeighChartConfig(weightArray);
   // https://www.chartjs.org/docs/latest
   const weightChart = new Chart(ctx, config); // eslint-disable-line no-unused-vars

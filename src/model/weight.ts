@@ -11,4 +11,8 @@ export default class WeightMeasurement {
     this.Date = date;
     this.Weight = weight;
   }
+
+  public asChartData(): any {
+    return { x: this.Date.format("YYYY-MM-DD"), y: this.Weight };
+  }
 }

@@ -1,4 +1,5 @@
 import Chart from "chart.js";
+import _ from "lodash";
 import moment from "moment";
 import "moment-precise-range-plugin";
 import {Birthday, WeightMeasures} from "./facts";
@@ -11,7 +12,7 @@ const setRelativeAge = (age) => $(relativeAgeId).text(age);
 
 const setBirthdate = (birthdate: moment.Moment) => $(birthdateId).text(`Born on ${birthdate.format("MMMM Do YYYY")}`);
 
-const relativeAgeText = (birthdate): string => {
+const relativeAgeText = (birthdate: moment.Moment): string => {
   const today = moment().startOf("day");
   const weeks = today.diff(birthdate, "week");
 
@@ -23,14 +24,10 @@ const relativeAgeText = (birthdate): string => {
 };
 
 const buildWeighChartConfig = (weightArray: WeightMeasurement[]): any => {
-  const dataValues = [];
-  weightArray.forEach((weight) => {
-    dataValues.push({ x: weight.Date.format("YYYY-MM-DD"), y: weight.Weight });
-  });
   const config = {
     data: {
       datasets: [{
-        data: dataValues,
+        data: _.map(weightArray, (weight) => weight.asChartData()),
         fill: false,
         label: "Weight (lbs)",
       }],

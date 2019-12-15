@@ -5,3 +5,8 @@ theme-update:
 .PHONY: serve
 serve:
 	hugo serve --disableFastRender
+
+.PHONY: build
+build:
+	yarn run webpack
+	hugo

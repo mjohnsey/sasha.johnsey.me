@@ -7,8 +7,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "webpack": "webpack -w",
-    "serve": "hugo serve --disableFastRender"
+    "webpack": "webpack",
+    "webpack-watch": "webpack -w"
   },
   "repository": {
     "type": "git",

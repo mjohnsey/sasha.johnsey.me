@@ -4,6 +4,6 @@ export = moment;
 
 declare module 'moment' {
   interface Moment {
-    preciseDiff(start: string | Date | moment.Moment): string;
+    preciseDiff(start: string | Date | moment.Moment, breakItDown: boolean): string;
   }
 }

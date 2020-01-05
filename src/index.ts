@@ -16,14 +16,26 @@ const relativeAgeText = (birthdate: moment.Moment): string => {
   const today = moment().startOf("day");
   const weeks = today.diff(birthdate, "week");
 
-  let age = `${birthdate.preciseDiff(today)} old`;
-  if (weeks < 24) {
-    age = `${age} (${weeks} weeks)`;
+  const diffBreakdown = birthdate.preciseDiff(today, true) as any;
+  const years = diffBreakdown.years;
+  const months = diffBreakdown.months;
+  const days = diffBreakdown.days;
+  let age = "";
+  age += `${months} months`;
+  age += ` ${days} days`;
+  age += " old";
+  if (years > 0) {
+    let yearsString = `${years} year`;
+    if (years > 1) {
+      yearsString += "s";
+    }
+    age = `${yearsString} ${age}`;
   }
   return age;
 };
 
 const buildWeighChartConfig = (weightArray: WeightMeasurement[]): ChartConfiguration => {
+  const mostRecentMeasure = _.maxBy(weightArray, (measure) => measure.Date);
   const config = {
     data: {
       datasets: [{
@@ -57,7 +69,7 @@ const buildWeighChartConfig = (weightArray: WeightMeasurement[]): ChartConfigura
       },
       title: {
         display: true,
-        text: "Sasha's Weight",
+        text: `Sasha's Weight (Last: ${mostRecentMeasure.Weight} on ${mostRecentMeasure.Date.format("YYYY-MM-DD")})`,
       },
     },
     type: "line",

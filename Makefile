@@ -10,3 +10,5 @@ serve:
 build:
 	yarn run webpack
 	hugo
+	# hugo does something weird where it causes exa to fail, touching that dir fixes the problem
+	touch docs

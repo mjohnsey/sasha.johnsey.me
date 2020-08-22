@@ -12,5 +12,8 @@ WeightMeasures.push(WeightMeasurement.BuildWeightMeasurement("2019-11-18", 8.4))
 WeightMeasures.push(WeightMeasurement.BuildWeightMeasurement("2019-12-13", 9.6));
 // went down because she was fasting for surgery
 WeightMeasures.push(WeightMeasurement.BuildWeightMeasurement("2020-01-03", 9.3));
+WeightMeasures.push(WeightMeasurement.BuildWeightMeasurement("2020-06-09", 10.10));
+WeightMeasures.push(WeightMeasurement.BuildWeightMeasurement("2020-07-03", 11));
+WeightMeasures.push(WeightMeasurement.BuildWeightMeasurement("2020-08-21", 11.3));
 
 export {Birthday, WeightMeasures};

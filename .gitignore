@@ -1,19 +1,23 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Created by https://www.gitignore.io/api/hugo
-# Edit at https://www.gitignore.io/?templates=hugo
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
 
-### Hugo ###
-# gitginore template for Hugo projects
-# website: https://gohugo.io
+# testing
+/coverage
 
-# generated files by hugo
-/public/
-/resources/_gen/
+# production
+/build
 
-# executable may be added to repository
-hugo.exe
-hugo.darwin
-hugo.linux
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# End of https://www.gitignore.io/api/hugo
-node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

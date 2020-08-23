@@ -1,0 +1,36 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #707070;
+  min-height: 25vmin;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.iframe {
+  display: flex;
+  border-style: none;
+  justify-content: center;
+}
+
+.hero-image img {
+  height: 40vmin;
+}
+
+h1 {
+  font-size: xx-large;
+}
+
+body {
+  font-size: medium;
+}

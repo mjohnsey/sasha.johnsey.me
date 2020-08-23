@@ -1,6 +1,0 @@
-{
-  "files.exclude": {
-    "docs/*": true,
-    "static/js/index.js": true
-  }
-}
